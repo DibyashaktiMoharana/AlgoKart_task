@@ -153,3 +153,5 @@ INFO Naman disconnected
 
 
 This implementation follows the wire protocol strictly, defaults to port 4000, and supports configuration via `PORT` environment variable or `--port` CLI flag.
+
+[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=Dibyashakti&button_colour=FFDD00&font_colour=000000&outline_colour=000000&coffee_colour=ffffff)](https://www.buymeacoffee.com/Dibyashakti)

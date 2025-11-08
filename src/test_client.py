@@ -1,5 +1,3 @@
-"""Test client for chat server"""
-
 import socket
 import threading
 
@@ -16,6 +14,8 @@ def receiver(sock, stop_event):
             try:
                 data = sock.recv(4096)
                 if not data:
+                    print("\nDisconnected from server")
+                    stop_event.set()
                     break
                 
                 buffer += data.decode('utf-8', errors='ignore')
@@ -40,9 +40,13 @@ def main():
         recv_thread = threading.Thread(target=receiver, args=(sock, stop_event), daemon=True)
         recv_thread.start()
         
-        while True:
+        while not stop_event.is_set():
             try:
                 line = input()
+                
+                if stop_event.is_set():
+                    break
+                
                 if not line.strip():
                     continue
                 

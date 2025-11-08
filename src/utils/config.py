@@ -1,8 +1,5 @@
-"""Configuration utilities"""
-
 import os
 import sys
-
 
 def get_port():
     """Get server port from CLI args > ENV > default (4000)"""

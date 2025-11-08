@@ -1,12 +1,5 @@
-"""Simple Socket Chat Server - Main entry point"""
-
 import socket
 import threading
-import sys
-import os
-
-# Add parent directory to path for imports
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from handlers.client_handler import handle_client
 from utils.config import get_port

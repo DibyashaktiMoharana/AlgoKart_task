@@ -1,7 +1,7 @@
-"""Client connection handler"""
-
 import socket
 from . import broadcast
+
+IDLE_TIMEOUT = 60  # seconds
 
 
 def sanitize(text):
@@ -22,10 +22,22 @@ def handle_client(sock, address):
     print(f"New connection from {address}")
     username = None
     buffer = ""
+    cleanup_done = False
+    sock.settimeout(IDLE_TIMEOUT)
     
     try:
         while True:
-            data = sock.recv(1024)
+            try:
+                data = sock.recv(1024)
+            except socket.timeout:
+                if username:
+                    broadcast.remove_client(username)
+                    broadcast.broadcast(f"INFO {username} disconnected")
+                    cleanup_done = True
+                sock.close()
+                print(f"Connection closed (idle timeout): {address}")
+                return
+            
             if not data:
                 break
             
@@ -93,7 +105,7 @@ def handle_client(sock, address):
         print(f"Error handling {address}: {e}")
     
     finally:
-        if username:
+        if username and not cleanup_done:
             broadcast.remove_client(username)
             broadcast.broadcast(f"INFO {username} disconnected")
         sock.close()

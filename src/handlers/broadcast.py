@@ -1,8 +1,3 @@
-"""Message broadcasting and client management"""
-
-import socket
-
-# Active clients: {username: socket}
 clients = {}
 
 

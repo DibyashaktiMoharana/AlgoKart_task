@@ -115,8 +115,6 @@ INFO Naman disconnected
 
 The server automatically disconnects clients after 60 seconds of inactivity. If no commands are sent within this period, the client will be disconnected and other users will receive an `INFO <username> disconnected` notification.
 
-
-
 ## Testing with Multiple Terminals
 
 To test the chat server functionality:
@@ -144,6 +142,7 @@ To test the chat server functionality:
    Type: `LOGIN bob`
 
 4. **Test Commands:**
+
    - In alice's terminal: `MSG Hello everyone!`
    - In bob's terminal: `MSG Hi alice!`
    - In either terminal: `WHO` to see active users
